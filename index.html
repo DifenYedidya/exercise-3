@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Page Title</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <script src="javascript.js"></script>
+    </head>
+  <body>
+
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." class="form-control">
+      
+        <table class="table table-striped" id="myTable">
+                <thead>
+                  <tr>
+                    <th scope="col">no</th>
+                    <th scope="col">name</th>
+                    <th scope="col">mass</th>
+                    <th scope="col">height</th>
+                    <th scope="col">gender</th>
+                  </tr>
+                </thead>
+                <tbody id="target">
+                </tbody>
+              </table>
+
+    <script>
+        var dataArray = people.results;
+
+        for(var i = 0 ; i < dataArray.length; i++) {
+          console.log(dataArray[i].gender);var tr = document.createElement("tr");
+          var thno = document.createElement("th");
+          var td1 = document.createElement("td");
+          var td2 = document.createElement("td");
+          var td3 = document.createElement("td");
+          var td4 = document.createElement("td");
+          thno.append(i+1);
+          thno.setAttribute("scope", "row");
+          td1.append(dataArray[i].name);
+          td2.append(dataArray[i].mass);
+          td3.append(dataArray[i].height);
+          td4.append(dataArray[i].gender);
+          tr.append(thno);
+          tr.append(td1);
+          tr.append(td2);
+          tr.append(td3);
+          tr.append(td4);
+          document.querySelector("#target").appendChild(tr);
+        }
+
+        function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+        
+    </script>
+
+    
+
+  </body>
+</html>
